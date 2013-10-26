@@ -12,5 +12,8 @@
   "eqnull": true,
   "node": true,
   "quotmark": "double",
-  "-W040": true
+
+  "-W040": true,
+  "-W030": true,
+  "-W068": true
 }
