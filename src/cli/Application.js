@@ -2,9 +2,9 @@
 
 var fs = require("fs");
 
-function CommandLineInterface(musicDirectory, settingsFile) {
+function Application(musicDirectory, settingsFile) {
   this.directory = musicDirectory;
   this.settings = JSON.parse(fs.readFileSync(settingsFile, "utf-8"));
 }
 
-module.exports = CommandLineInterface;
+module.exports = Application;
