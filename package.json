@@ -6,7 +6,7 @@
   "main": "music-janitor",
 
   "scripts": {
-    "test": "grunt mocha"
+    "test": "grunt mochaTest"
   },
 
   "engines": {
