@@ -1,21 +1,27 @@
 {
   "name": "music-janitor",
   "version": "0.1.0",
-  "description": "Command line tool for cleanin-up mess inside music files collection.",
-  "main": "index.js",
+  "description": "Command line tool for cleaning up mess inside music files collection.",
+
+  "main": "music-janitor",
+
   "scripts": {
     "test": "npm test"
   },
+
   "repository": "",
+
   "keywords": [
     "mp3",
     "id3",
     "idv2",
     "music"
   ],
+
   "author": "Wojtek Gawronski (afronski)",
   "license": "MIT",
   "dependencies": {
-    "ffmetadata": "~1.0.2"
-  } 
+    "ffmetadata": "~1.0.2",
+    "optimist": "~0.6.0"
+  }
 }
