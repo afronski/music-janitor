@@ -1,31 +1,27 @@
 "use strict";
 
-var ffmetadata = require("ffmetadata");
+var ffmetadata = require("ffmetadata"),
 
-function Tagger() {}
+    tagger = {};
 
-Tagger.switchImplementation = function(newImplementation) {
-  ffmetadata = newImplementation;
-};
-
-Tagger.pull = function(from, next) {
+tagger.pull = function(from, next) {
   ffmetadata.read(from, function(error, metadata) {
     if (error) {
-      throw error;
+      return next(error);
     }
 
-    return next(metadata);
+    return next(null, metadata);
   });
 };
 
-Tagger.push = function(to, what, next) {
+tagger.push = function(to, what, next) {
   ffmetadata.write(to, what, function(error) {
     if (error) {
-      throw error;
+      return next(error);
     }
 
-    return next();
+    return next(null);
   });
 };
 
-module.exports = Tagger;
+module.exports = tagger;

@@ -10,7 +10,7 @@ var FILE_FOR_READING = "./test/assets/file-for-reading.mp3",
 describe("Tagger", function() {
 
   it("should read metadata from the music file", function(done) {
-    Tagger.pull(FILE_FOR_READING, function(metadata) {
+    Tagger.pull(FILE_FOR_READING, function(error, metadata) {
 
       metadata.artist.should.equal("Test Artist");
       metadata.title.should.equal("Test Song");
@@ -30,7 +30,7 @@ describe("Tagger", function() {
     };
 
     Tagger.push(FILE_FOR_WRITTING, tags, function() {
-      Tagger.pull(FILE_FOR_WRITTING, function(metadata) {
+      Tagger.pull(FILE_FOR_WRITTING, function(error, metadata) {
 
         metadata.artist.should.equal("Written Artist");
         metadata.title.should.equal("Written Song");
@@ -46,7 +46,7 @@ describe("Tagger", function() {
     var tags = { artist: "Updated" };
 
     Tagger.push(FILE_FOR_READING, tags, function() {
-      Tagger.pull(FILE_FOR_READING, function(metadata) {
+      Tagger.pull(FILE_FOR_READING, function(error, metadata) {
 
         metadata.artist.should.equal("Updated");
         metadata.title.should.equal("Test Song");
@@ -55,6 +55,22 @@ describe("Tagger", function() {
           done();
         });
       });
+    });
+  });
+
+  it("should explode when there is no file for reading", function(done) {
+    Tagger.pull("not-existing-file", function(error) {
+      error.should.be.not.equal(null);
+
+      done();
+    });
+  });
+
+  it("should explode when there is no file for writting", function(done) {
+    Tagger.push("not-existing-file", {}, function(error) {
+      error.should.be.not.equal(null);
+
+      done();
     });
   });
 

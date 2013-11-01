@@ -8,10 +8,6 @@ function Renamer(from) {
   this.basePath = path.dirname(from);
 }
 
-Renamer.switchImplementation = function(newImplementation) {
-  fs = newImplementation;
-};
-
 Renamer.prototype.rename = function(to) {
   fs.renameSync(this.from, path.join(this.basePath, to));
 };
